@@ -103,8 +103,10 @@ token.js
 # TernJS port file
 .tern-port
 
+
 .env
 *.DS_Store
 *.map
 bundle.js
 config.js
+package-lock.json
