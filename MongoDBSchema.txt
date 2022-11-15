@@ -1,0 +1,56 @@
+table REVIEWS
+{
+      "review_id": INT,
+      "product_id": INT
+      "rating": INT,
+      "summary": TEXT,
+      "recommend": BOOLEAN,
+      "response": TEXT,
+      "body": TEXT,
+      "date": TIMESTAMP,
+      "reviewer_name": TEXT,
+      "email": TEXT,
+      "helpfulness": INT,
+      "photos": [{
+          "id": INT,
+          "url": TEXT
+        },
+        {
+          "id": INT,
+          "url": TEXT
+        },
+        // ...
+      ]
+    },
+
+
+
+table METADATA
+{
+  "product_id": INT,
+  "ratings": {
+    1: INT,
+    2: INT,
+    3: INT,
+    4: INT,
+    5: INT
+  },
+  "recommended": {
+    0: INT,
+    1: INT
+  },‹
+  "characteristics": {
+    "Size": {
+      "id": INT,
+      "value": NUM,
+    },
+    "Width": {
+      "id": INT,
+      "value": NUM,
+    },
+    "Comfort": {
+      "id": INT,
+      "value": NUM,
+    },
+    // ...
+}
