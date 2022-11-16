@@ -18,17 +18,17 @@ DROP TABLE IF EXISTS reviews CASCADE;
 
 CREATE TABLE reviews (
   review_id SERIAL PRIMARY KEY,
-  product_id INTEGER NULL DEFAULT NULL,
-  rating INT NULL DEFAULT NULL,
-  summary TEXT NULL DEFAULT NULL,
-  body TEXT NULL DEFAULT NULL,
-  recommend bit NULL DEFAULT NULL,
-  reviewer_name TEXT NULL DEFAULT NULL,
-  reviewer_email TEXT NULL DEFAULT NULL,
-  date DATE NULL DEFAULT NULL,
+  product_id INTEGER NOT NULL,
+  rating INT NOT NULL,
+  summary VARCHAR(60) NOT NULL,
+  body VARCHAR(1000) NOT NULL,
+  recommend BOOLEAN NOT NULL,
+  reviewer_name VARCHAR(60) NOT NULL,
+  reviewer_email VARCHAR(60) NOT NULL,
+  date DATE NOT NULL,
   response TEXT NULL DEFAULT NULL,
-  helpfulness INTEGER NULL DEFAULT NULL,
-  reported TEXT NULL DEFAULT NULL
+  helpfulness INTEGER NOT NULL DEFAULT 0,
+  reported BOOLEAN NOT NULL
 );
 
 -- ---
@@ -40,7 +40,7 @@ DROP TABLE IF EXISTS photos CASCADE;
 
 CREATE TABLE photos (
   photo_id SERIAL PRIMARY KEY,
-  review_id INTEGER NULL DEFAULT NULL,
+  review_id INTEGER NOT NULL,
   url TEXT NULL DEFAULT NULL
 );
 
@@ -53,8 +53,8 @@ DROP TABLE IF EXISTS characteristics CASCADE;
 
 CREATE TABLE characteristics (
   id SERIAL PRIMARY KEY,
-  product_id INTEGER NULL DEFAULT NULL,
-  type INTEGER NULL DEFAULT NULL
+  product_id INTEGER NOT NULL,
+  type VARCHAR(10) DEFAULT NULL
 );
 
 -- ---
