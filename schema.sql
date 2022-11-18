@@ -20,12 +20,12 @@ CREATE TABLE reviews (
   review_id SERIAL PRIMARY KEY,
   product_id INTEGER NOT NULL,
   rating INT NOT NULL,
-  summary VARCHAR(60) NOT NULL,
+  summary TEXT NOT NULL,
   body VARCHAR(1000) NOT NULL,
   recommend BOOLEAN NOT NULL,
   reviewer_name VARCHAR(60) NOT NULL,
   reviewer_email VARCHAR(60) NOT NULL,
-  date DATE NOT NULL,
+  date VARCHAR(20) NOT NULL,
   response TEXT NULL DEFAULT NULL,
   helpfulness INTEGER NOT NULL DEFAULT 0,
   reported BOOLEAN NOT NULL
@@ -76,9 +76,9 @@ CREATE TABLE characteristic_reviews (
 -- Foreign Keys
 -- ---
 
-ALTER TABLE photos ADD FOREIGN KEY (review_id) REFERENCES reviews (review_id);
-ALTER TABLE characteristic_reviews ADD FOREIGN KEY (characteristic_id) REFERENCES characteristics (id);
-ALTER TABLE characteristic_reviews ADD FOREIGN KEY (review_id) REFERENCES reviews (review_id);
+-- ALTER TABLE photos ADD FOREIGN KEY (review_id) REFERENCES reviews (review_id);
+-- ALTER TABLE characteristic_reviews ADD FOREIGN KEY (characteristic_id) REFERENCES characteristics (id);
+-- ALTER TABLE characteristic_reviews ADD FOREIGN KEY (review_id) REFERENCES reviews (review_id);
 
 -- ---
 -- Table Properties
