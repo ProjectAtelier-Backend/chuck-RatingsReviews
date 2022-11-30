@@ -18,6 +18,42 @@ const getReviews = (product_id, page=1, count=5, sort='relevant') => {
   })
 }
 
+const getCharacteristicsType = (product_id) => {
+  return new Promise(function(resolve, reject) {
+    pool.query(`SELECT * FROM characteristics WHERE product_id = ${product_id}`, (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+    })
+  })
+}
+
+const getCharacteristicsValue = (id) => {
+  return new Promise(function(resolve, reject) {
+    pool.query(`SELECT value FROM characteristic_reviews WHERE characteristic_id = ${id}`, (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+    })
+  })
+}
+
+const getRatingRecommended = (product_id) => {
+  return new Promise(function(resolve, reject) {
+    pool.query('SELECT rating, recommend FROM reviews WHERE review_id <= 5', (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+    })
+  })
+}
+
 module.exports = {
   getReviews,
+  getCharacteristicsType,
+  getCharacteristicsValue,
+  getRatingRecommended,
 }
