@@ -51,6 +51,17 @@ const getRatingRecommended = (product_id) => {
   })
 }
 
+const voteReview = (review_id) => {
+  return new Promise(function(resolve, reject) {
+    pool.query(`UPDATE reviews SET helpfulness = helpfulness + 1 WHERE review_id = ${review_id}`, (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(results.rows);
+    })
+  })
+}
+
 module.exports = {
   getReviews,
   getCharacteristicsType,
