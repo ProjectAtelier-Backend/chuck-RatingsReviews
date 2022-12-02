@@ -73,9 +73,38 @@ const reportReview = (review_id) => {
   })
 }
 
+const createReview = (body) => {
+  return new Promise(function(resolve, reject) {
+    const { product_id, rating, summary, body, recommend, name, email, photos, characteristics } = body;
+    pool.query(`INSERT INTO reviews (product_id, rating, summary, body, recommend,reviewer_name, reviewer_email)
+    VALUES (${product_id}, ${rating}, ${summary}, ${body}, ${recommend}, ${name}, ${email}) RETURNING review_id`, (error, results) => {
+      if (error) {
+        reject(error)
+      }
+      resolve(pool.query(`INSERT INTO photos (review_id, url)
+      VALUES ((SELECT review_id from reviews), ${photos}) RETURNING *`, (error, results) => {
+        if (error) {
+          reject(error)
+        }
+        resolve(pool.query(`INSERT INTO characteristics (product_id, type)
+        VALUES (${product_id}, ${characteristics}) RETURNING *`, (error, results) => {
+          if (error) {
+            reject(error)
+          }
+          resolve(`A new review has been added: ${results.rows[0]}`)
+        }))
+      }))
+    })
+  })
+}
+
+
 module.exports = {
   getReviews,
   getCharacteristicsType,
   getCharacteristicsValue,
   getRatingRecommended,
+  voteReview,
+  reportReview,
+  createReview,
 }
