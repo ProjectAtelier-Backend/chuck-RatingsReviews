@@ -1,6 +1,13 @@
 require('dotenv').config();
 const Pool = require('pg').Pool;
-const pool = new Pool(process.env.db_credentials);
+// const pool = new Pool(process.env.db_credentials);
+const pool = new Pool({
+  user: process.env.db_credentials.user,
+  host: process.env.db_credentials.host,
+  password: process.env.db_credentials.password,
+  port: process.env.db_credentials.port,
+  database: 'sdc_ratings_and_reviews',
+});
 
 const getReviews = (product_id, page=1, count=5, sort='relevant') => {
   let order = '';

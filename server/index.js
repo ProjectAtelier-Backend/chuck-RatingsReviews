@@ -1,6 +1,7 @@
 const express = require('express');
 const app = express();
 const port = 3001;
+const models = require('./model.js');
 
 app.get('/', (req, res) => {
   res.status(200).send('Hello World!');
@@ -16,7 +17,10 @@ app.listen(port, () => {
 
 //Returns a list of reviews for a particular product
 app.get('/reviews', (req, res) => {
-  res.end();
+  return models.getReviews(20)
+    .then((data) => {
+      res.status(200).send(data)
+    })
 });
 
 //Returns review metadata for a given product
