@@ -10,7 +10,13 @@ describe('API Server Unit Tests', () => {
     expect(response.data[0].body).toBeDefined();
   })
 
-
+  test('get reviews meta', async () => {
+    const response = await axios.get(`${url}/reviews/meta`);
+    expect(response.data.product_id).toBe(20);
+    expect(response.data.ratings).toBeDefined();
+    expect(response.data.recommended).toBeDefined();
+    expect(response.data.characteristics).toBeDefined();
+  })
 })
 
 
