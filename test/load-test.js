@@ -25,6 +25,6 @@ export default function () {
 }
 
 export let options = {
-  vus: 1,
+  vus: 1000,
   duration: '60s'
 };
