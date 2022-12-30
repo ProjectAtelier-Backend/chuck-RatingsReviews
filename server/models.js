@@ -14,7 +14,6 @@ module.exports = {
 
     db_getReviews({ productId, page, count, sort })
       .then(data => {
-        console.log({ product: productId, page, count, results: data.results })
         res.status(200).send({ product: productId, page, count, results: data.results })
       })
       .catch(err => {
@@ -25,7 +24,6 @@ module.exports = {
   getReviewMeta: (req, res) => {
     db_getReviewMeta(req.params.product_id)
       .then(data => {
-        console.log(data)
         res.status(200).send(data)
       })
       .catch(err => {
@@ -45,7 +43,6 @@ module.exports = {
   },
 
   voteReview: (req, res) => {
-    console.log(req.params)
     db_voteReview(req.params.review_id)
       .then(data => {
         res.sendStatus(204)
