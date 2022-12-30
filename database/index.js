@@ -1,10 +1,10 @@
 require('dotenv').config();
 const Pool = require('pg').Pool;
 const pool = new Pool({
-  user: process.env.db_credentials.user,
-  host: process.env.db_credentials.host,
-  password: process.env.db_credentials.password,
-  port: process.env.db_credentials.port,
+  user: process.env.db_user,
+  host: process.env.db_host,
+  password: process.env.db_password,
+  port: process.env.db_port,
   database: 'sdc_ratings_and_reviews',
 });
 
