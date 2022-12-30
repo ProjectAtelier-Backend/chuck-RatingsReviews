@@ -17,7 +17,7 @@ module.exports = {
         res.status(200).send({ product: productId, page, count, results: data.results })
       })
       .catch(err => {
-        res.send(500).send(err)
+        res.status(500).send(err)
       })
   },
 
@@ -35,7 +35,7 @@ module.exports = {
     db_addReview(req.query)
       .then(data => {
         let review_id = data[0]
-        res.status(201).send( review_id )
+        res.status(201).send(review_id)
       })
       .catch(err => {
         res.status(500).send(err)
@@ -45,7 +45,7 @@ module.exports = {
   voteReview: (req, res) => {
     db_voteReview(req.params.review_id)
       .then(data => {
-        res.sendStatus(204)
+        res.status(204)
       })
       .catch(err => {
         res.status(500).send(err)
@@ -55,7 +55,7 @@ module.exports = {
   reportReview: (req, res) => {
     db_reportReview(req.params.review_id)
       .then(data => {
-        res.sendStatus(204)
+        res.status(204)
       })
       .catch(err => {
         res.status(500).send(err)

@@ -1,7 +1,6 @@
 const pool = require('../index');
 
 module.exports = async (review) => {
-  console.log('review>>>', review)
   const { product_id, rating, summary, body, recommend, name, email, characteristics } = review
   const reviewer_name = review.name;
   const reviewer_email = review.email;
